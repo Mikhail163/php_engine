@@ -67,6 +67,8 @@ function pasteValues($variables, $page_name, $templateContent){
 	
 	$page= str_replace('{{YEAR}}', $variables["page_year"], $page);
 	$page= str_replace('{{TITLE}}',$variables["page_title"], $page);
+	$page= str_replace('{{CSS}}',$variables["page_css"], $page);
+	$page= str_replace('{{JS}}',$variables["page_js"], $page);
 	
 	//перебираем массив замен
     foreach ($variables as $key => $value) {
@@ -117,6 +119,11 @@ function prepareVariables($page_name){
     $vars["page_title"] = 'Курс PHP разработка - выполнение домашнего задания';
     $vars["page_h1"] = 'Главная страница сайта';
     $vars["page_year"] = date("Y", time());
+    
+    $vars["page_css"] = '<link href="/css/main.css" rel="stylesheet">';
+    $vars["page_js"] = '<script type="text/javascript" src="/js/main.js"></script>';
+    
+ 
     
 	//в зависимости от того, какую страницу вызываем
 	//такой блок кода для нее и выполняем
