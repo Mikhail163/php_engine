@@ -12,8 +12,13 @@ define('DATA_DIR', SITE_ROOT . 'data');
 define('LIB_DIR', SITE_ROOT . 'engine');
 define('TPL_DIR', SITE_ROOT . 'templates');
 
+define('PRESENTATION_DIR', SITE_ROOT . 'presentation');
+
 define('SITE_TITLE', 'Урок 5');
 //подгружаем основные функции
 require_once(LIB_DIR . '/functions.php');
 require_once(LIB_DIR . '/db.php');
-
+/*
+require_once(PRESENTATION_DIR. '/link.php');
+require_once(PRESENTATION_DIR. '/page_controller.php');
+*/

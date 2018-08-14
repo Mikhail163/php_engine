@@ -70,6 +70,10 @@ function pasteValues($variables, $page_name, $templateContent){
 	$page= str_replace('{{CSS}}',$variables["page_css"], $page);
 	$page= str_replace('{{JS}}',$variables["page_js"], $page);
 	
+	$menu = '';
+	
+	//print_r($variables);
+	
 	//перебираем массив замен
     foreach ($variables as $key => $value) {
 		//Если массив двумерный, т.е. не одно значение для подстановки
@@ -82,17 +86,22 @@ function pasteValues($variables, $page_name, $templateContent){
                 // замена массивом
                 $result = "";
                 foreach ($value as $value_key => $item){
+                	
+                	$pn =  (strcmp($key, "menucontent") == 0)?"menu":$page_name;
+                	
 					//сформируем имя дополнительного шаблона
-                    $itemTemplateContent = file_get_contents(TPL_DIR . "/" . $page_name ."_".$key."_item.tpl");
-
+                	$itemTemplateContent = file_get_contents(TPL_DIR . "/" . $pn."_".$key."_item.tpl");
 					//выполним замену по дополнительному шаблону
                     foreach($item as $item_key => $item_value){
                         $i_key = '{{' . strtoupper($item_key) . '}}';
-
+                        
                         $itemTemplateContent = str_replace($i_key, $item_value, $itemTemplateContent);
                     }
 					//формируем общую строку с шаблоном уже с подставленными значениями
-                    $result .= $itemTemplateContent;
+					if ($pn == "menu")
+						$menu .= $itemTemplateContent;
+					else
+                    	$result .= $itemTemplateContent;
                 }
             }
             else
@@ -102,6 +111,8 @@ function pasteValues($variables, $page_name, $templateContent){
             $templateContent = str_replace($p_key, $result, $templateContent);
         }
     }
+    
+    $page= str_replace('{{MENU}}', $menu, $page);
 	//вернем строку с готовым шаблоном со вставленными элементами
     return str_replace('{{CONTENT}}', $templateContent, $page);
 }
@@ -122,6 +133,11 @@ function prepareVariables($page_name){
     
     $vars["page_css"] = '<link href="/css/main.css" rel="stylesheet">';
     $vars["page_js"] = '<script type="text/javascript" src="/js/main.js"></script>';
+    
+    $vars["menucontent"] = [
+    		["MENU_ACTIVE" => '', "MENU_LINK" => "/" , "MENU_NAME" => "Главная"],
+    		["MENU_ACTIVE" => '', "MENU_LINK" => "/news/" , "MENU_NAME" => "Новости"]
+    ];
     
  
     
@@ -235,7 +251,7 @@ return true;
 function getNews(){
     $sql = "SELECT id_news, news_title, news_preview FROM news";
     $news = getAssocResult($sql);
-	print_r($news);
+	//print_r($news);
     return $news;
 }
 //функция удаления новости по ее номеру
