@@ -27,9 +27,9 @@ class Page {
 			case "news":
 
 				$this->mVars["newsfeed"] = getNews();
-				$this->mVars["test"] = "������!";
-				$this->mH1 = '�������� ��������';
-				$this->mTitle = '�������� ��������';
+				$this->mVars["test"] = "Тест!";
+				$this->mH1 = 'Страница самых последних новостей';
+				$this->mTitle = 'Новости - самые актуальные';
 				break;
 			case "newspage":
 
@@ -55,6 +55,7 @@ class Page {
 	function render()
 	{
 		$page = new Template("site");
+		$menu = new Template("menu");
 		$content = new Template($this->mName);
 		
 		$vars["header"] = $this->mHeader;
@@ -67,7 +68,12 @@ class Page {
 		
 		$vars["content"] = $content->render($this->mVars);
 		
-		$vars["menu"] = $this->mMenu;
+		
+		$menu_vars["menucontent"] = [
+				["MENU_ACTIVE" => '', "MENU_LINK" => "/" , "MENU_NAME" => "Главная"],
+				["MENU_ACTIVE" => '', "MENU_LINK" => "/news/" , "MENU_NAME" => "Новости"]
+		];
+		$vars["menu"] = $menu->render($menu_vars);
 		
 		$template = new Template("site");
 		
