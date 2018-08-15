@@ -55,7 +55,7 @@ class Page {
 	function render()
 	{
 		$page = new Template("site");
-		$menu = new Template("menu");
+		
 		$content = new Template($this->mName);
 		
 		$vars["header"] = $this->mHeader;
@@ -73,6 +73,7 @@ class Page {
 				["MENU_ACTIVE" => '', "MENU_LINK" => "/" , "MENU_NAME" => "Главная"],
 				["MENU_ACTIVE" => '', "MENU_LINK" => "/news/" , "MENU_NAME" => "Новости"]
 		];
+		$menu = new Template("menu");
 		$vars["menu"] = $menu->render($menu_vars);
 		
 		$template = new Template("site");
