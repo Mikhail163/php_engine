@@ -3,6 +3,10 @@
 //подключаем все библиотеки
 require_once('../config/config.php');
 
+$page = new Page();
+
+echo $page->render();
+/*
 //получаем URL запроса к сайту и разбиваем его в массив url_array
 $url_array = explode("/", $_SERVER['REQUEST_URI']);
 
@@ -23,3 +27,4 @@ $variables = prepareVariables($page_name);
 //входные данные имя страницы и ассоциотивный массив переменных
 //Например "title"=>"Шапка сайта"
 echo renderPage($page_name, $variables);
+*/
