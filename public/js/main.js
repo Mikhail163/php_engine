@@ -119,9 +119,6 @@ function calcResult() {
 		return -1;
 	}
 	
-	a.value = (a.value == "")?0:a.value;
-	b.value = (b.value == "")?0:b.value;
-	
 	let result_string;
 	
 	switch (operator.value) {
