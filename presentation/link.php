@@ -93,5 +93,9 @@ public static function ToCalc() {
 	return self::Build('calc/');
 }
 
+public static function ToAdminProducts() {
+	return self::Build('adminproducts/');
+}
+
 }
 ?>

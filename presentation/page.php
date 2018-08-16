@@ -49,9 +49,20 @@ class Page {
 				header("location: /news/");
 				
 				break;
+				
 			case "calc":
+				
 				$this->mH1 = 'Калькулятор';
 				$this->mTitle = 'Онлайн калькулятор';
+				
+				break;
+				
+			case "adminproducts":
+				
+				$this->mH1 = 'Администрирование товаров на сайте';
+				$this->mTitle = 'Администрирование товаров на сайте';
+				
+				break;
 		}
 		
 	}
@@ -74,6 +85,7 @@ class Page {
 				["MENU_ACTIVE" => '', "MENU_LINK" => Link::Build("") , "MENU_NAME" => "Главная"],
 				["MENU_ACTIVE" => '', "MENU_LINK" => Link::ToNews() , "MENU_NAME" => "Новости"],
 				["MENU_ACTIVE" => '', "MENU_LINK" => Link::ToCalc() , "MENU_NAME" => "Калькулятор"],
+				["MENU_ACTIVE" => '', "MENU_LINK" => Link::ToAdminProducts() , "MENU_NAME" => "Редактор товаров (CRUD блок)"]
 		];
 		
 		$vars["menu"] = Template::render("menu", $menu_vars);

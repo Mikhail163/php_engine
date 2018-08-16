@@ -84,6 +84,7 @@ body {
 	padding-right: 5px;
 	
 }
+.calc_input {padding-left: 5px;}
 .calc_input.number_ok {
 	border-color: green;
 }

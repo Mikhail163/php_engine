@@ -102,10 +102,10 @@ function changeNumber () {
 	} else {
 		//number.value = (number.value == "")?0:number.value;
 	    number.classList.add("number_ok");
-		number.classList.remove("number_error");
-		
-		calcResult();
+		number.classList.remove("number_error");	
 	}
+	
+	calcResult();
 	
 	return 0;
 }
