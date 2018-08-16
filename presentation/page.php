@@ -1,5 +1,6 @@
 <?php 
 header('Content-Type: text/html; charset=utf-8');
+
 class Page {
 	
 	public $mH1 = "Страница обучения";
@@ -48,6 +49,9 @@ class Page {
 				header("location: /news/");
 				
 				break;
+			case "calc":
+				$this->mH1 = 'Калькулятор';
+				$this->mTitle = 'Онлайн калькулятор';
 		}
 		
 	}
@@ -67,8 +71,9 @@ class Page {
 		
 		
 		$menu_vars["menucontent"] = [
-				["MENU_ACTIVE" => '', "MENU_LINK" => "/" , "MENU_NAME" => "Главная"],
-				["MENU_ACTIVE" => '', "MENU_LINK" => "/news/" , "MENU_NAME" => "Новости"]
+				["MENU_ACTIVE" => '', "MENU_LINK" => Link::Build("") , "MENU_NAME" => "Главная"],
+				["MENU_ACTIVE" => '', "MENU_LINK" => Link::ToNews() , "MENU_NAME" => "Новости"],
+				["MENU_ACTIVE" => '', "MENU_LINK" => Link::ToCalc() , "MENU_NAME" => "Калькулятор"],
 		];
 		
 		$vars["menu"] = Template::render("menu", $menu_vars);

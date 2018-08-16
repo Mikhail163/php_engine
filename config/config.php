@@ -14,12 +14,20 @@ define('TPL_DIR', SITE_ROOT . 'templates');
 
 define('PRESENTATION_DIR', SITE_ROOT . 'presentation');
 
-define('SITE_TITLE', 'Урок 5');
+
+define('USE_SSL', 'no');
+define('HTTP_SERVER_PORT', '80');
+/* Name of the virtual directory the site runs in, for example:
+ '/tshirtshop/' if the site runs at http://www.example.com/tshirtshop/
+ '/' if the site runs at http://www.example.com/ */
+define('VIRTUAL_LOCATION', '/');
+
 //подгружаем основные функции
 require_once(LIB_DIR . '/functions.php');
 require_once(LIB_DIR . '/db.php');
 require_once(LIB_DIR . '/template.php');
 require_once(PRESENTATION_DIR. '/page.php');
+require_once(PRESENTATION_DIR. '/link.php');
 /*
 require_once(PRESENTATION_DIR. '/link.php');
 require_once(PRESENTATION_DIR. '/page_controller.php');

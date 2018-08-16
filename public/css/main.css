@@ -65,3 +65,28 @@ body {
 #content {
 	flex:1;
 }
+
+.calc {
+	display: flex;
+	width: 100%;
+	align-items: center;
+}
+
+.calc > input, select {
+	display: flex;
+	width: 100px;
+	height: 30px;
+	border: 3px solid grey;
+	border-radius: 3px;
+	align-items: center;
+	justify-content: center;
+	padding-left: 5px;
+	padding-right: 5px;
+	
+}
+.calc_input.number_ok {
+	border-color: green;
+}
+.calc_input.number_error {
+	border-color: red;
+}
