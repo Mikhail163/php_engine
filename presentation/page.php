@@ -54,9 +54,6 @@ class Page {
 	
 	function render()
 	{
-		$page = new Template("site");
-		
-		$content = new Template($this->mName);
 		
 		$vars["header"] = $this->mHeader;
 		$vars["title"] = $this->mTitle;
@@ -66,19 +63,17 @@ class Page {
 		$vars["css"] = $this->mCss;
 		$vars["js"] = $this->mJs;
 		
-		$vars["content"] = $content->render($this->mVars);
+		$vars["content"] = Template::render($this->mName, $this->mVars);
 		
 		
 		$menu_vars["menucontent"] = [
 				["MENU_ACTIVE" => '', "MENU_LINK" => "/" , "MENU_NAME" => "Главная"],
 				["MENU_ACTIVE" => '', "MENU_LINK" => "/news/" , "MENU_NAME" => "Новости"]
 		];
-		$menu = new Template("menu");
-		$vars["menu"] = $menu->render($menu_vars);
 		
-		$template = new Template("site");
+		$vars["menu"] = Template::render("menu", $menu_vars);
 		
-		return $template->render($vars);
+		return Template::render("site", $vars);
 	}
 	
 	
