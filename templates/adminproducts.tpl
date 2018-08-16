@@ -1,1 +1,3 @@
-<p>Страница администратора товаров</p>
+<div class="admin_products">
+{{PRODUCT}}
+</div>
