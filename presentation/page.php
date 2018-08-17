@@ -2,6 +2,7 @@
 header('Content-Type: text/html; charset=utf-8');
 
 require_once(PRESENTATION_DIR. '/adminproducts.php');
+require_once(PRESENTATION_DIR. '/adminproduct.php');
 
 class Page {
 	
@@ -75,6 +76,24 @@ class Page {
 				$this->mTitle = 'Страница инициализации базы данных';
 				
 				Catalog::Init();
+				
+				break;
+			case "adminproduct":
+				
+				
+				$ap = new AdminProduct();
+				$error = $ap->init();
+				$this->mVars["error"] = empty($error)?" ":$error;
+				$this->mVars["link_to_admin_products"] = Link::ToAdminProducts();
+				
+				$pr_info = $ap->getInfo();
+				foreach ($pr_info as $key => $value) {
+					$this->mVars[$key] = empty($value)?" ":$value;
+				}
+				
+				$this->mH1 = 'Страница редактирования товаров';
+				$this->mTitle = 'Страница редактирования товаров';
+				
 				
 				break;
 		}

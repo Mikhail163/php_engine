@@ -77,9 +77,9 @@ class AdminProducts
     if ($this->_mAction == 'edit_prod')
     {
 
-      header('Location: ' . Link::ToAdminProducts());
+    	header('Location: ' . Link::ToAdminProduct($this->_mActionedProductId));
 
-      exit();
+        exit();
     }
     
     // If we want to see a product details

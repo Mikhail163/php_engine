@@ -39,6 +39,21 @@ class Sql
 	{	
 		return 'DELETE FROM product WHERE product_id = :product_id LIMIT 1';
 	}
+	
+	public static function catalog_get_product_for_admin() {
+		return 'SELECT   product_id, name, description, price, image
+		 FROM     product
+		 WHERE product_id = :product_id
+		 LIMIT 1';
+	}
+	
+	public static function catalog_update_product()
+	{
+		return
+		'UPDATE product
+	     SET    name = :name, description = :description, price = :price
+	     WHERE  product_id = :product_id';
+	}
 }
 
 ?>

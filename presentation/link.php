@@ -101,5 +101,9 @@ public static function ToInitDb() {
 	return self::Build('initdb/');
 }
 
+public static function ToAdminProduct($product_id) {
+	return self::Build("adminproduct/?product_id={$product_id}");
+}
+
 }
 ?>
