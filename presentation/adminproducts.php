@@ -1,9 +1,9 @@
 <?php
 header("Content-tupe: text/html; charset=utf-8");
-// Class that deals with products administration from a specific category
+
 class AdminProducts
 {
-  // Public variables available in smarty template
+  
   public $mProductsCount;
   public $mProducts;
   
@@ -74,20 +74,10 @@ class AdminProducts
     // If we want to see a product details
     if ($this->_mAction == 'edit_prod')
     {
-    	/*
-      header('Location: ' .
-             htmlspecialchars_decode(
-               Link::ToProductAdmin($this->mMetaId,
-			   						$this->mDepartmentId,
-                                    $this->mCategoryId,
-                                    $this->_mActionedProductId)));
 
-      exit();*/
-    }
+      header('Location: ' . Link::ToAdminProducts());
 
-	if ($this->_mAction == 'del_from_subcat')
-    {	
-        //Catalog::RemoveProductFromSubcategory($this->_mActionedProductId, $this->mSubcategoryId);
+      exit();
     }
 
 	
