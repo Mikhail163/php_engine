@@ -11,7 +11,7 @@
 
 */
 function getAssocResult($sql){
-    $db = mysqli_connect(HOST, USER, PASS, DB);
+	$db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
     mysqli_set_charset($db, "utf8");
 	$result = mysqli_query($db, $sql);
 	$array_result = array();
@@ -23,7 +23,7 @@ function getAssocResult($sql){
 }
 
 function executeQuery($sql){
-    $db = mysqli_connect(HOST, USER, PASS, DB);
+	$db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
     mysqli_set_charset($db, "utf8");
 	$result = mysqli_query($db, $sql);
     mysqli_close($db);

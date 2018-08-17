@@ -97,5 +97,9 @@ public static function ToAdminProducts() {
 	return self::Build('adminproducts/');
 }
 
+public static function ToInitDb() {
+	return self::Build('initdb/');
+}
+
 }
 ?>

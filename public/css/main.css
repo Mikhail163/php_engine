@@ -91,3 +91,31 @@ body {
 .calc_input.number_error {
 	border-color: red;
 }
+
+.admin_products > div:nth-child(odd) {
+	background-color: #D3D3D3;
+}
+
+.admin_product_info {
+	width:100%;
+	display:flex;
+	box-sizing: border-box;
+	border: 1px solid #B0E0E6;
+	border-top-width: 0px;
+}
+
+.admin_product_info > div {
+	padding:5px;
+}
+
+.admin_product_title {
+	background-color: #B0E0E6 !important;
+	border-radius: 5px 5px 0px 0px;
+}
+
+.admin_product_id {width:5%}
+.admin_product_name {width:20%}
+.admin_product_price {width:15%}
+.admin_product_description {width:40%}
+.admin_product_control{width:20%}
+.error {color:red;}

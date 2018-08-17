@@ -38,9 +38,10 @@ class Template {
 	}
 	
 	private static function pasteValues($tpl_name, $variables, $templateContent){
-
+		
 		foreach ($variables as $key => $value) {
 
+			//print_r ("{$key} => {$value}");
 			if ($value != null) {
 
 				$p_key = '{{' . strtoupper($key) . '}}';
@@ -50,6 +51,8 @@ class Template {
 					$result = "";
 					foreach ($value as $value_key => $item){
 	
+						//print_r ("__{$value_key} => {$item}");
+						
 						$itemTemplateContent = file_get_contents(TPL_DIR . "/" . $tpl_name."_".$key."_item.tpl");
 						
 

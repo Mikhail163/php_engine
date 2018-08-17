@@ -2,14 +2,6 @@
 define('SITE_ROOT', "../");
 define('WWW_ROOT', SITE_ROOT . '/public');
 
-/* DB config 
- * Старые конфиги - оставлены для совместимости
- * */
-define('HOST', 'localhost');
-define('USER', 'gb');
-define('PASS', 'gb2018');
-define('DB', 'test5');
-
 /* Database connectivity setup */
 define('DB_PERSISTENCY', 'true');
 define('DB_SERVER', 'localhost');
@@ -21,6 +13,7 @@ define('PDO_DSN', 'mysql:host=' . DB_SERVER . ';dbname=' . DB_DATABASE);
 define('DATA_DIR', SITE_ROOT . 'data');
 define('LIB_DIR', SITE_ROOT . 'engine');
 define('TPL_DIR', SITE_ROOT . 'templates');
+define('BIS_DIR', SITE_ROOT . 'business');
 
 define('PRESENTATION_DIR', SITE_ROOT . 'presentation');
 
@@ -38,6 +31,9 @@ require_once(LIB_DIR . '/db.php');
 require_once(LIB_DIR . '/template.php');
 require_once(PRESENTATION_DIR. '/page.php');
 require_once(PRESENTATION_DIR. '/link.php');
+require_once(BIS_DIR. '/sql.php');
+require_once(BIS_DIR. '/catalog.php');
+require_once(LIB_DIR. '/database_handler.php');
 /*
 require_once(PRESENTATION_DIR. '/link.php');
 require_once(PRESENTATION_DIR. '/page_controller.php');

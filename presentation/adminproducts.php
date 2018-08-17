@@ -11,7 +11,7 @@ class AdminProducts
   private $_mAction;
   private $_mActionedProductId;
   
-  public $mErrorMessage = null;
+  public $mErrorMessage = "";
   
   // Class constructor
   public function __construct()
@@ -55,12 +55,14 @@ class AdminProducts
       if ($product_description == null)
         $this->mErrorMessage = 'Product description is empty';
 
-      if ($product_price == null || !is_numeric($product_price))
+      if ($product_price == null || !(is_numeric($product_price))) {
         $this->mErrorMessage = 'Product price must be a number!';
+      }
 		
 
-      if ($this->mErrorMessage == null)
+      if (empty($this->mErrorMessage))
       {
+
         $product_id = Catalog::AddProduct(
         		$product_name,
                 $product_description, 
@@ -79,6 +81,17 @@ class AdminProducts
 
       exit();
     }
+    
+    // If we want to see a product details
+    if ($this->_mAction == 'del_prod')
+    {
+    	Catalog::DeleteProduct($this->_mActionedProductId);
+    	header('Location: ' . Link::ToAdminProducts());
+    	
+    	exit();
+    }
+    
+    return $this->mErrorMessage;
 
 	
   }

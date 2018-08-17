@@ -1,6 +1,8 @@
 <?php 
 header('Content-Type: text/html; charset=utf-8');
 
+require_once(PRESENTATION_DIR. '/adminproducts.php');
+
 class Page {
 	
 	public $mH1 = "Страница обучения";
@@ -59,8 +61,20 @@ class Page {
 				
 			case "adminproducts":
 				
+				$ap = new AdminProducts;
+				$error = $ap->init();
+				$this->mVars["error"] = empty($error)?" ":$error;
 				$this->mH1 = 'Администрирование товаров на сайте';
 				$this->mTitle = 'Администрирование товаров на сайте';
+				$this->mVars["product"] = Catalog::GetProductsForAdmin();
+					
+				break;
+			case "initdb":
+
+				$this->mH1 = 'Страница инициализации базы данных';
+				$this->mTitle = 'Страница инициализации базы данных';
+				
+				Catalog::Init();
 				
 				break;
 		}
@@ -85,7 +99,8 @@ class Page {
 				["MENU_ACTIVE" => '', "MENU_LINK" => Link::Build("") , "MENU_NAME" => "Главная"],
 				["MENU_ACTIVE" => '', "MENU_LINK" => Link::ToNews() , "MENU_NAME" => "Новости"],
 				["MENU_ACTIVE" => '', "MENU_LINK" => Link::ToCalc() , "MENU_NAME" => "Калькулятор"],
-				["MENU_ACTIVE" => '', "MENU_LINK" => Link::ToAdminProducts() , "MENU_NAME" => "Редактор товаров (CRUD блок)"]
+				["MENU_ACTIVE" => '', "MENU_LINK" => Link::ToAdminProducts() , "MENU_NAME" => "Редактор товаров (CRUD блок)"],
+				["MENU_ACTIVE" => '', "MENU_LINK" => Link::ToInitDb() , "MENU_NAME" => "Инициализация базы данных"]
 		];
 		
 		$vars["menu"] = Template::render("menu", $menu_vars);
