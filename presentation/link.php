@@ -105,5 +105,18 @@ public static function ToAdminProduct($product_id) {
 	return self::Build("adminproduct/?product_id={$product_id}");
 }
 
+public static function ToLogin() {
+	return self::Build("login/");
+}
+
+
+public static function ToAccount() {
+	return self::Build("account/");
+}
+
+public static function ToRegistration() {
+	return self::Build("registration/");
+}
+
 }
 ?>

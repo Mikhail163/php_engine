@@ -119,3 +119,39 @@ body {
 .admin_product_description {width:40%}
 .admin_product_control{width:20%}
 .error {color:red;}
+
+#header {
+	box-sizing: border-box;
+	width:100%;
+	display:flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logo {
+	font-width: bold;
+	font-style: italic;
+}
+
+.auth {
+	box-sizing: border-box;
+	display:flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.auth_item {
+	margin: 5px;
+}
+
+.auth_button {
+	cursor: pointer;
+	border: none; 
+	outline: none;
+	background-color: white;
+	font-size: 0.9rem;
+	margin-left:0px;
+	margin-right:0px;
+}

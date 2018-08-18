@@ -9,7 +9,7 @@
 	{{JS}}
 </head>
 <body>
-<div id="header">{{HEADER}}</div>
+{{HEADER}}
 <div id="main_menu">{{MENU}}</div>
 
 <h1>{{H1}}</h1>

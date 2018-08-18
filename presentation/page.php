@@ -3,6 +3,7 @@ header('Content-Type: text/html; charset=utf-8');
 
 require_once(PRESENTATION_DIR. '/adminproducts.php');
 require_once(PRESENTATION_DIR. '/adminproduct.php');
+require_once(PRESENTATION_DIR. '/authorization.php');
 
 class Page {
 	
@@ -96,14 +97,35 @@ class Page {
 				
 				
 				break;
+			case "login":
+
+				$this->mH1 = 'Вход в личный кабинет';
+				$this->mTitle = 'Страница входа в личный кабинет';
+				
+				
+				break;
+			case "account":
+				
+				$this->mH1 = 'Личный кабинет';
+				$this->mTitle = 'Личный кабинет';
+				
+				
+				break;
+			case "registration":
+				
+				$this->mH1 = 'Регистрация нового пользователя';
+				$this->mTitle = 'Регистрация нового пользователя';
+				
+				
+				break;
 		}
 		
 	}
 	
 	function render()
 	{
-		
-		$vars["header"] = $this->mHeader;
+		$auth = new Authorisation;
+		$vars["header"] = Template::render("header", ['customer_login' => $auth->render()]);
 		$vars["title"] = $this->mTitle;
 		$vars["h1"] = $this->mH1;
 		$vars["year"] = date("Y", time());
