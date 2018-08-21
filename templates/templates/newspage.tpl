@@ -1,0 +1,1 @@
+<div class="news_content">{{NEWS_CONTENT}}</div>

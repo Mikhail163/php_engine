@@ -1,0 +1,157 @@
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+.main_menu {
+	display: flex;
+}
+
+.main_menu a {
+	display: block;
+	margin: 10px;
+	text-decoration: none;
+}
+
+.main_menu a.active {
+	font-weight: bold;
+}
+
+.hidden {
+	z-index:1;
+}
+
+.modal_image {
+	position: absolute;
+	background-color: white;
+	z-index: 5;
+	left:5%;
+	top: 5%;
+	width:90%;
+	height:90%;
+	padding:10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	border: 1px solid black;
+	border-radius:5px;
+	justify-content: center;
+}
+
+.modal_image .close {
+	display:flex;
+	cursor: pointer;
+	width:100%;
+	height: 20px;
+	font-weight:bold;
+	font-size:1.1rem;
+	justify-content: center;
+}
+
+.modal_image .close:hover {
+	color: red;
+}
+
+.modal_image img {
+	width: inherit;
+}
+
+.div_for_image {
+	display:flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#content {
+	flex:1;
+}
+
+.calc {
+	display: flex;
+	width: 100%;
+	align-items: center;
+}
+
+.calc > input, select {
+	display: flex;
+	width: 100px;
+	height: 30px;
+	border: 3px solid grey;
+	border-radius: 3px;
+	align-items: center;
+	justify-content: center;
+	padding-left: 5px;
+	padding-right: 5px;
+	
+}
+.calc_input {padding-left: 5px;}
+.calc_input.number_ok {
+	border-color: green;
+}
+.calc_input.number_error {
+	border-color: red;
+}
+
+.admin_products > div:nth-child(odd) {
+	background-color: #D3D3D3;
+}
+
+.admin_product_info {
+	width:100%;
+	display:flex;
+	box-sizing: border-box;
+	border: 1px solid #B0E0E6;
+	border-top-width: 0px;
+}
+
+.admin_product_info > div {
+	padding:5px;
+}
+
+.admin_product_title {
+	background-color: #B0E0E6 !important;
+	border-radius: 5px 5px 0px 0px;
+}
+
+.admin_product_id {width:5%}
+.admin_product_name {width:20%}
+.admin_product_price {width:15%}
+.admin_product_description {width:40%}
+.admin_product_control{width:20%}
+.error {color:red;}
+
+#header {
+	box-sizing: border-box;
+	width:100%;
+	display:flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logo {
+	font-width: bold;
+	font-style: italic;
+}
+
+.auth {
+	box-sizing: border-box;
+	display:flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.auth_item {
+	margin: 5px;
+}
+
+.auth_button {
+	cursor: pointer;
+	border: none; 
+	outline: none;
+	background-color: white;
+	font-size: 0.9rem;
+	margin-left:0px;
+	margin-right:0px;
+}
