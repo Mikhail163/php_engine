@@ -25,6 +25,8 @@ define('HTTP_SERVER_PORT', '80');
  '/' if the site runs at http://www.example.com/ */
 define('VIRTUAL_LOCATION', '/');
 
+define('SALT2', 'awOIHO@EN@Oine q2enq2kbkb');
+
 //подгружаем основные функции
 require_once(LIB_DIR . '/functions.php');
 require_once(LIB_DIR . '/db.php');
@@ -34,6 +36,7 @@ require_once(PRESENTATION_DIR. '/link.php');
 require_once(BIS_DIR. '/sql.php');
 require_once(BIS_DIR. '/catalog.php');
 require_once(LIB_DIR. '/database_handler.php');
+require_once(BIS_DIR. '/customer.php');
 /*
 require_once(PRESENTATION_DIR. '/link.php');
 require_once(PRESENTATION_DIR. '/page_controller.php');

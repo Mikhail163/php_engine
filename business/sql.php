@@ -27,6 +27,47 @@ class Sql
 		";
 	}
 	
+	public static function create_user_table() {
+		return
+		"
+CREATE TABLE IF NOT EXISTS `user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(50) NOT NULL,
+  `user_login` varchar(50) NOT NULL,
+  `user_password` varchar(50) NOT NULL,
+  `user_last_action` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY (`user_login`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+		";
+	}
+	
+	public static function create_role_table() {
+		return
+		"
+CREATE TABLE IF NOT EXISTS `role` (
+  `role_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,
+  PRIMARY KEY (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+		";
+	}
+	
+	public static function create_user_role_table() {
+		return
+		"		
+CREATE TABLE IF NOT EXISTS `user_role` (
+  `user_role_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+   PRIMARY KEY (`user_role_id`),
+   UNIQUE KEY (`user_id`,`role_id`),
+   FOREIGN KEY (`user_id`) REFERENCES `user`(`user_id`),
+   FOREIGN KEY (`role_id`) REFERENCES `role`(`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+		";
+	}
+	
 	/* Create catalog_add_product_to_category stored procedure */
 	public static function catalog_add_product()
 	{
@@ -53,6 +94,10 @@ class Sql
 		'UPDATE product
 	     SET    name = :name, description = :description, price = :price
 	     WHERE  product_id = :product_id';
+	}
+	
+	public static function user_get_info_by_name() {
+		return "SELECT user_id, user_name, user_password FROM user WHERE user_login = :user_name";
 	}
 }
 

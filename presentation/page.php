@@ -76,7 +76,7 @@ class Page {
 				$this->mH1 = 'Страница инициализации базы данных';
 				$this->mTitle = 'Страница инициализации базы данных';
 				
-				Catalog::Init();
+				init_db();
 				
 				break;
 			case "adminproduct":
@@ -101,6 +101,32 @@ class Page {
 
 				$this->mH1 = 'Вход в личный кабинет';
 				$this->mTitle = 'Страница входа в личный кабинет';
+				
+				// если уже залогинен, то выбрасываем на главную
+				if(Customer::alreadyLoggedIn()){
+					header("Location: /");
+				}
+				
+				// если есть куки, то авторизуем сразу
+				if(Customer::checkAuthWithCookie()){
+					header("Location: /");
+				}
+				// иначе пробуем авторизовать по логину и паролю
+				else{
+					$vars["autherror"] = "";
+					if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+						if(!Customer::authWithCredentials()){
+							$vars["autherror"] = "Неправильный логин/пароль";
+						}
+						else{
+							header("Location: /");
+						}
+					}
+					
+					
+					$vars["username"] = "admin";
+					$vars["password"] = Customer::hashPassword("12345");
+				}
 				
 				
 				break;

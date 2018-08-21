@@ -26,6 +26,11 @@ function go() {
 	
 }
 
+
+function init_db() {
+	Customer::Init();
+	Catalog::Init();
+}
 //функция логирования
 function _log($s, $suffix='')
 	{
@@ -119,3 +124,4 @@ function getNewsContent($id_news){
 
     return $result;
 }
+
