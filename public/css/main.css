@@ -155,3 +155,31 @@ body {
 	margin-left:0px;
 	margin-right:0px;
 }
+
+.input_form {
+	display:flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	width:320px;
+}
+
+.input_row {
+	display:flex;
+	flex-direction: row;
+	margin: 5px;
+	box-sizing: border-box;
+	width:310px;
+	align-items: center;
+}
+
+.input_row_info {
+	width:100px;
+}
+
+.input_row_value {
+	width:200px;
+}
+
+.input_form_error {border-color:red;}
+
+.red { color:red; }

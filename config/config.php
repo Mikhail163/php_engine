@@ -37,6 +37,7 @@ require_once(BIS_DIR. '/sql.php');
 require_once(BIS_DIR. '/catalog.php');
 require_once(LIB_DIR. '/database_handler.php');
 require_once(BIS_DIR. '/customer.php');
+require_once(BIS_DIR. '/password.php');
 /*
 require_once(PRESENTATION_DIR. '/link.php');
 require_once(PRESENTATION_DIR. '/page_controller.php');

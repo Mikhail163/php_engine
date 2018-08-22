@@ -78,6 +78,7 @@ class Catalog
 		DatabaseHandler::Execute($sql, $params);
 	}
 
+
 		 
 }
 ?>

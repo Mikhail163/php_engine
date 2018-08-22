@@ -41,7 +41,7 @@ class Template {
 		
 		foreach ($variables as $key => $value) {
 
-			//print_r ("{$key} => {$value}");
+			//print_r ("{$key} => __{$value}__ <br>");
 			if ($value != null) {
 
 				$p_key = '{{' . strtoupper($key) . '}}';
@@ -51,7 +51,7 @@ class Template {
 					$result = "";
 					foreach ($value as $value_key => $item){
 	
-						//print_r ("__{$value_key} => {$item}");
+						//print_r ("__{$value_key} => __{$item}__ <br>");
 						
 						$itemTemplateContent = file_get_contents(TPL_DIR . "/" . $tpl_name."_".$key."_item.tpl");
 						
@@ -59,7 +59,7 @@ class Template {
 						foreach($item as $item_key => $item_value){
 							$i_key = '{{' . strtoupper($item_key) . '}}';
 							
-							$itemTemplateContent = str_replace($i_key, $item_value, $itemTemplateContent);
+							$itemTemplateContent = str_replace($i_key, trim($item_value), $itemTemplateContent);
 						}
 
 						$result .= $itemTemplateContent;
@@ -68,7 +68,7 @@ class Template {
 				else
 					$result = $value;
 
-				$templateContent = str_replace($p_key, $result, $templateContent);
+				$templateContent = str_replace($p_key, trim($result), $templateContent);
 			}
 		}
 

@@ -32,10 +32,10 @@ class Sql
 		"
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(50) NOT NULL,
-  `user_login` varchar(50) NOT NULL,
-  `user_password` varchar(50) NOT NULL,
-  `user_last_action` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `login` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `last_action` int(11) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY (`user_login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -97,7 +97,17 @@ CREATE TABLE IF NOT EXISTS `user_role` (
 	}
 	
 	public static function user_get_info_by_name() {
-		return "SELECT user_id, user_name, user_password FROM user WHERE user_login = :user_name";
+		return "SELECT user_id, name, password FROM user WHERE login = :user_name";
+	}
+	
+	public static function user_get_id_by_name() {
+		return "SELECT user_id FROM user WHERE login = :login LIMIT 1;";
+	}
+	
+	
+	public static function user_register() {
+		return "INSERT INTO user (name, login, password)
+		VALUES (:name, :login, :password)";
 	}
 }
 

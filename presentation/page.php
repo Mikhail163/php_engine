@@ -27,6 +27,8 @@ class Page {
 		
 		if ($url_array[1] != "")
 			$this->mName = $url_array[1];
+		
+			$auth = new Authorisation;
 			
 		switch ($this->mName){
 			case "news":
@@ -142,6 +144,12 @@ class Page {
 				$this->mH1 = 'Регистрация нового пользователя';
 				$this->mTitle = 'Регистрация нового пользователя';
 				
+				
+				
+				$reg_info = $auth->getRegistrationVars();
+				foreach ($reg_info as $key => $value) {
+					$this->mVars[$key] = empty($value)?" ":$value;
+				}
 				
 				break;
 		}

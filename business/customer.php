@@ -105,12 +105,30 @@ class Customer
 		$sql = Sql::user_get_info_by_name();
 		
 		// Build the parameters array
-		$params = array (':user_name' => $user_name);
+		$params = array (':name' => $user_name);
 		
 		// Execute the query
 		DatabaseHandler::GetRow($sql, $params);
 	}
 	
+	public static function getIdByLogin($login) {
+		
+		$sql = Sql::user_get_id_by_name();
+		
+		$params = array (':login' => $login);
+		
+		// Execute the query
+		DatabaseHandler::GetOne($sql, $params);
+	}
+	
+	
+	public static function register($name, $login, $password) {
+		$sql = Sql::user_register();
+		
+		$params = array (':login' => $login, ':name' => $name, ':password' => $password);
+		
+		DatabaseHandler::Execute($sql, $params);
+	}
 
 		 
 }
