@@ -1,6 +1,7 @@
 <?php
 define('SITE_ROOT', "../");
 define('WWW_ROOT', SITE_ROOT . '/public');
+define('DEBUG', true);
 
 /* Database connectivity setup */
 define('DB_PERSISTENCY', 'true');

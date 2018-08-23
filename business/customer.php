@@ -3,6 +3,7 @@
 class Customer
 {
 	public static $mUser;
+	public static $mIsAuth;
 	/**
 	 * Инициализируем наш проект и строим структуру бд
 	 */
@@ -28,42 +29,57 @@ class Customer
 	 * @return bool
 	 */
 	public static function checkAuth(){
-		$result = false;
 		
-		if (isset($_SESSION['user'])) {
-			echo '<h1>Зашли в авторизацию через сессию</h1>';
-			$user_data = self::getInfoById($_SESSION['user']['user_id']);
-			$user_data_session = $_SESSION['user'];
+		
+		if (!isset(self::$mIsAuth)) {
 			
-			if(($user_data['password'] === $user_data_session['password']) && ($user_data['user_id'] === $user_data_session['user_id'])){
-				$result = true;
+			$result = false;
+			
+			if (isset($_SESSION['user'])) {
 				
-				echo '<h1>Пароли из сессии совпали</h1>';
+				debug("Customer::checkAuth() user isset");
 				
-				// Если куки существуют - то обновляем их, если все корректно
-				if(isset($_COOKIE['user_id']) && isset($_COOKIE['cookie_hash']))
-					if(($user_data['password'] === $_COOKIE['cookie_hash']) && ($user_data['user_id'] === $_COOKIE['user_id']))
-						self::setCookie($user_data['user_id'], $user_data['password']);
+				$user_data = self::getInfoById($_SESSION['user']['user_id']);
+				$user_data_session = $_SESSION['user'];
+				
+				if(($user_data['password'] === $user_data_session['password']) && ($user_data['user_id'] === $user_data_session['user_id'])){
+					$result = true;
+					
+					debug("Customer::checkAuth() user isset: Пароли из сессии совпали");
+					
+					// Если куки существуют - то обновляем их, если все корректно
+					if(isset($_COOKIE['user_id']) && isset($_COOKIE['cookie_hash']))
+						if(($user_data['password'] === $_COOKIE['cookie_hash']) && ($user_data['user_id'] === $_COOKIE['user_id']))
+							self::setCookie($user_data['user_id'], $user_data['password']);
+				}
+				
+			}
+			elseif(isset($_COOKIE['user_id']) && isset($_COOKIE['cookie_hash'])){
+
+				
+				// получаем данные пользователя по id
+				$user_data = self::getInfoById($_COOKIE['user_id']);
+				
+				
+				if(($user_data['password'] === $_COOKIE['cookie_hash']) && ($user_data['user_id'] === $_COOKIE['user_id'])){
+					$result = true;
+					$_SESSION['user'] = $user_data;
+					
+					//  Обновляем cookies
+					self::setCookie($user_data['user_id'], $user_data['password']);
+				}
+				
+				
 			}
 			
-		}		
-		elseif(isset($_COOKIE['user_id']) && isset($_COOKIE['cookie_hash'])){
 			
-			// получаем данные пользователя по id
-			$user_data = self::getInfoById($_COOKIE['user_id']);
-			
-			
-			if(($user_data['password'] === $_COOKIE['cookie_hash']) && ($user_data['user_id'] === $_COOKIE['user_id'])){
-				$result = true;
-				$_SESSION['user'] = $user_data;
-				
-				//  Обновляем cookies
-				self::setCookie($user_data['user_id'], $user_data['password']);
-			}
-			
+			self::$mIsAuth = $result;
 		}
+
 		
-		return $result;
+		
+		
+		return self::$mIsAuth;
 	}
 	
 	public static function setCookie($user_id, $password) {
@@ -100,7 +116,6 @@ class Customer
 			if(self::checkPassword($password, $user_data['password'])){
 				$isAuth = 1;
 				
-				echo '<h1>Создание сессии</h1>';
 				// сохраним данные в сессию
 				$_SESSION['user'] = $user_data;
 				
@@ -221,7 +236,17 @@ class Customer
 					);
 		}*/
 		
-		$_SESSION = array();
+		$_SESSION = array(); //destroy all of the session variables
+		if (ini_get("session.use_cookies")) {
+			$params = session_get_cookie_params();
+			setcookie(session_name(), '', time() - 42000,
+					$params["path"], $params["domain"],
+					$params["secure"], $params["httponly"]
+					);
+		}
+		
+		
+
 		session_unset();
 		session_destroy();
 		

@@ -125,3 +125,22 @@ function getNewsContent($id_news){
     return $result;
 }
 
+function debug($message, $args = []) {
+	if (DEBUG) {
+		echo "<h2>{$message}</h2>";
+		
+		if (!empty($args)) {
+			
+			echo "<p>";
+			
+			if (gettype($args) == "array")
+				print_r($args);
+			else 
+				echo $args;
+			
+			echo "</p>";
+		}
+		
+	}
+}
+

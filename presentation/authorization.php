@@ -41,12 +41,16 @@ class Authorisation
   		exit();
   		
   	}
-  	
+
   	if (Customer::checkAuth()) {
+  				
   		$this->mUser = Customer::getInfo();
   		$this->mAuthLevel = 1;
   		$this->mSubmitNames[1]['auth_submit1_value'] = $this->mUser['name'];
+  		
   	}
+
+  	
   }
   
   public function getRegistrationVars() {
@@ -62,6 +66,7 @@ class Authorisation
   	$reg_vars['PASSWORD'] = '';
   	$reg_vars['PASSWORD2'] = '';
   	
+  	
   	// Проверяем, нажали ли кнопку
   	if (isset($_POST['submitRegistration'])) {
 
@@ -69,10 +74,10 @@ class Authorisation
   		$login = trim($_POST['login']);
   		$password = trim($_POST['password']);
   		$password2 = trim($_POST['password2']);
+ 
   		
   		$reg_vars['LOGIN'] = $login;
   		
-  		//echo "<h1>$login</h1>";
   		$reg_vars['NAME'] = $name;
   		$reg_vars['PASSWORD'] = $password;
   		$reg_vars['PASSWORD2'] = $password2;

@@ -23,12 +23,13 @@ class Page {
 	
 	public function __construct() {
 		
+		
 		$url_array = explode("/", $_SERVER['REQUEST_URI']);
 		
 		if ($url_array[1] != "")
 			$this->mName = $url_array[1];
 		
-			$auth = new Authorisation;
+		$auth = new Authorisation;
 			
 		switch ($this->mName){
 			case "news":
@@ -138,8 +139,8 @@ class Page {
 			case "registration":
 				
 				if (Customer::checkAuth()) {
-					//echo '<h1>Пользователь зарегистрирован</h1>';
-					header('Location: ' . Link::Build());
+					//debug("Page construct: Пользователь авторизован");
+					//header('Location: ' . Link::Build());
 					//exit();
 				}
 				
