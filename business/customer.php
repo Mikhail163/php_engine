@@ -121,8 +121,7 @@ class Customer
 				
 				// если стояла галка, то запоминаем пользователя на сутки
 				if($remember){
-					setcookie("user_id", $user_data['user_id'], time()+86400);
-					setcookie("cookie_hash", $user_data['password'], time()+86400);	
+					self::setCookie($user_data['user_id'], $user_data['password']);
 				}
 			}
 		}
