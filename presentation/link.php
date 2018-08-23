@@ -4,7 +4,7 @@ class Link
 {
 	
 	
-  public static function Build($link, $type = 'http')
+  public static function Build($link="", $type = 'http')
   {
     $base = (($type == 'http' || USE_SSL == 'no') ? 'http://' : 'https://') .
             getenv('SERVER_NAME');

@@ -34,10 +34,10 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `login` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `last_action` int(11) NOT NULL,
   PRIMARY KEY (`user_id`),
-  UNIQUE KEY (`user_login`)
+  UNIQUE KEY (`login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 		";
 	}
@@ -97,10 +97,18 @@ CREATE TABLE IF NOT EXISTS `user_role` (
 	}
 	
 	public static function user_get_info_by_name() {
-		return "SELECT user_id, name, password FROM user WHERE login = :user_name";
+		return "SELECT user_id, name, password FROM user WHERE name = :name";
 	}
 	
-	public static function user_get_id_by_name() {
+	public static function user_get_info_by_id() {
+		return "SELECT user_id, name, password FROM user WHERE user_id = :user_id";
+	}
+	
+	public static function user_get_info_by_login() {
+		return "SELECT user_id, name, password FROM user WHERE login = :login";
+	}
+	
+	public static function user_get_id_by_login() {
 		return "SELECT user_id FROM user WHERE login = :login LIMIT 1;";
 	}
 	

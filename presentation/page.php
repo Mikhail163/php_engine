@@ -105,14 +105,10 @@ class Page {
 				$this->mTitle = 'Страница входа в личный кабинет';
 				
 				// если уже залогинен, то выбрасываем на главную
-				if(Customer::alreadyLoggedIn()){
+				if(Customer::checkAuth()){
 					header("Location: /");
 				}
 				
-				// если есть куки, то авторизуем сразу
-				if(Customer::checkAuthWithCookie()){
-					header("Location: /");
-				}
 				// иначе пробуем авторизовать по логину и паролю
 				else{
 					$vars["autherror"] = "";
@@ -140,6 +136,12 @@ class Page {
 				
 				break;
 			case "registration":
+				
+				if (Customer::checkAuth()) {
+					//echo '<h1>Пользователь зарегистрирован</h1>';
+					header('Location: ' . Link::Build());
+					//exit();
+				}
 				
 				$this->mH1 = 'Регистрация нового пользователя';
 				$this->mTitle = 'Регистрация нового пользователя';
