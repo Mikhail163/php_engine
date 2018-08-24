@@ -110,8 +110,14 @@ class Page {
 					header("Location: /");
 				}
 				
+				$login_info = $auth->getLoginVars();
+				
+				foreach ($login_info as $key => $value) {
+					$this->mVars[$key] = empty($value)?" ":$value;
+				}
+				
 				// иначе пробуем авторизовать по логину и паролю
-				else{
+				
 					$vars["autherror"] = "";
 					if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 						if(!Customer::authWithCredentials()){
@@ -125,7 +131,7 @@ class Page {
 					
 					$vars["username"] = "admin";
 					$vars["password"] = Customer::hashPassword("12345");
-				}
+				
 				
 				
 				break;
@@ -140,7 +146,7 @@ class Page {
 				
 				if (Customer::checkAuth()) {
 					//debug("Page construct: Пользователь авторизован");
-					//header('Location: ' . Link::Build());
+					header('Location: ' . Link::Build());
 					//exit();
 				}
 				

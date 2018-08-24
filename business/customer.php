@@ -37,7 +37,7 @@ class Customer
 			
 			if (isset($_SESSION['user'])) {
 				
-				debug("Customer::checkAuth() user isset");
+				//debug("Customer::checkAuth() user isset");
 				
 				$user_data = self::getInfoById($_SESSION['user']['user_id']);
 				$user_data_session = $_SESSION['user'];
@@ -45,7 +45,7 @@ class Customer
 				if(($user_data['password'] === $user_data_session['password']) && ($user_data['user_id'] === $user_data_session['user_id'])){
 					$result = true;
 					
-					debug("Customer::checkAuth() user isset: Пароли из сессии совпали");
+					//debug("Customer::checkAuth() user isset: Пароли из сессии совпали");
 					
 					// Если куки существуют - то обновляем их, если все корректно
 					if(isset($_COOKIE['user_id']) && isset($_COOKIE['cookie_hash']))
@@ -125,9 +125,6 @@ class Customer
 				}
 			}
 		}
-		
-		
-		
 		
 		
 		return $isAuth;

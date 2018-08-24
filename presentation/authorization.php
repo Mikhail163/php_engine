@@ -46,11 +46,63 @@ class Authorisation
   				
   		$this->mUser = Customer::getInfo();
   		$this->mAuthLevel = 1;
-  		$this->mSubmitNames[1]['auth_submit1_value'] = $this->mUser['name'];
-  		
+  		$this->mSubmitNames[1]['auth_submit1_value'] = $this->mUser['name'];		
   	}
 
   	
+  }
+  
+  
+  public function getLoginVars() {
+  	
+  	$vars['LOGINERROR'] = "";
+  	$vars['LOGINCLASSERROR'] = " ";
+  	$vars['PASSWORDCLASSERROR'] = " ";
+  	$vars['LOGIN'] = '';
+  	$vars['PASSWORD'] = '';
+  	
+  	
+  	// Проверяем, нажали ли кнопку
+  	if (isset($_POST['submitLogin'])) {
+  		
+  		$name = trim($_POST['name']);
+  		$password = trim($_POST['password']);
+  		
+  		$remember = (isset($_POST['rememberme']) && $_POST['rememberme'] == 'on');
+  		
+  		$vars['LOGIN'] = $login;
+  		
+  		$vars['PASSWORD'] = $password;
+  		
+  		
+  		if (empty($login)) {
+  			$vars['LOGINERROR'] .= "укажите логин; ";
+  			$vars['LOGINCLASSERROR'] = "input_form_error";
+  		}
+  		
+  		if (empty($password)) {
+  			$vars['LOGINERROR'] .= "укажите логин; ";
+  			$vars['PASSWORDCLASSERROR'] = "input_form_error";
+  		}
+
+  		if (empty($vars['LOGINERROR'])) {
+  			
+  			// Проходим аутентификацию
+  			$is_auth = Customer::authLoginPasswordRemember($login, $password, $remember);
+  			
+  			if ($is_auth == 1) {
+  				// Перебрасываем на главную страницу
+  				header('Location: ' . Link::Build());
+  				exit();
+  			}
+  			else {
+  				$vars['LOGINERROR'] .= "Логин или пароль не верный!";
+  			}
+  		}
+  		
+  	}
+  	
+  	return $vars;
   }
   
   public function getRegistrationVars() {
