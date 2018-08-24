@@ -65,7 +65,7 @@ class Authorisation
   	// Проверяем, нажали ли кнопку
   	if (isset($_POST['submitLogin'])) {
   		
-  		$name = trim($_POST['name']);
+  		$login = trim($_POST['login']);
   		$password = trim($_POST['password']);
   		
   		$remember = (isset($_POST['rememberme']) && $_POST['rememberme'] == 'on');
